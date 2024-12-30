@@ -1,0 +1,33 @@
+<%- include("partials/header.ejs") %>
+<div class="home-content">
+    <!-- <h1>Stuart's Blog Website</h1> -->
+    <div class="new-button">
+        <a href="/create">Create a new post</a>
+    </div>
+    <h2>Latest Posts</h2>
+
+    
+    <% if (blogs.length === 0) { %>
+        <div>
+            <h3>No posts have been made yet.</h3>
+        </div>
+    <% } else {  %>
+        <ul>
+    <%      blogs.forEach((post) => { %>
+        <div class="blog-container">
+            <li>
+
+                <h3><a href="/view/<%= blogs.indexOf(post) %>"><%= post.title %></a></h3>
+                <p class="timestamp"><%= post.date %></p>
+                <p><%= post.content %></p>
+                
+                <a class="read-link" href="/view/<%= blogs.indexOf(post) %>">Read the full post</a>
+            </li>
+        </div>    
+
+    <%     });  %>
+        </ul>
+    <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>

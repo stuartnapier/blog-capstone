@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+
+
+<% console.log("postId:", locals.postId); %> <!-- Debugging statement -->
+
+
+
+<% if (locals.postId) { %>
+    <div class="create-container">
+        <h1>Edit</h1>
+        <form action="/update" method="POST">
+            <label for="title">Edit title:</label>
+            <input name="title" type="text" value="<%= title %>" required>
+            <label for="content">Type your blog post in here:</label>
+            <textarea name="content" cols="30" rows="18" placeholder="Content" required><%= content %></textarea>
+            <input hidden type="text" name="index" value="<%= postId %>">
+            <input type="submit" class="submit-button" value="Update Post">
+        </form>
+    </div>
+
+<% } else { %>
+    <div class="create-container">
+        <h1>Create a new blog post</h1>
+        <form action="/save" method="POST">
+            <label for="title">Blog title:</label>
+            <input name="title" type="text" placeholder="Blog Title" required>
+            <label for="content">Type your blog post in here:</label>
+            <textarea name="content" class="content-input" placeholder="Type your blog post here..."  required></textarea>
+            <input class="submit-button" type="submit" value="Submit Post">
+        </form>
+    </div>
+
+<% } %>
+
+<%- include("partials/footer.ejs") %>
